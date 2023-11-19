@@ -1,16 +1,16 @@
 package com.wordcounter;
 import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class Main {
+/**
+ * Main class for the word counter program.
+ */
 
+public class Main {
 	public static void main(String[] args) {
 		try {
 			if(args.length == 0) {
-				throw new IllegalArgumentException("At least one argument required, arguments allowed are as follows:\n"
-						+ "1 - Path to the file\n" + "2 - Case Sensitive - true or false (false by default)\n" + "3 - Delimiter (white space and new line are the default)\n");
+				throw new IllegalArgumentException("Path to the file is required!\n");
 			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -20,31 +20,22 @@ public class Main {
 		String delimiter = "\n|\\s";
 		boolean isCaseSensitive = false;
 
-		if(args.length > 1) {
-			isCaseSensitive = args[1].toLowerCase().equals("true") ? true : false;
-		}
-		if(args.length > 2) {
-			delimiter = args[2];
-		}
-
 		StringFormatter formatter = new WordCleaner();
 		TextFileProcessor textProcessor = new TextFileProcessor();
-	  Counter counter = new Counter();
-	  Comparator<StringCount> stringCountComparator = StringCount.STRING_COUNT_COUNTER_COMPARATOR.reversed().thenComparing(StringCount.STRING_COUNT_NAME_COMPARATOR);
+    Counter counter = new Counter();
+    WordCountSorter wordCountSorter = new WordCountSorter();
 
 		try {
 			List<String> wordList = textProcessor.splitTextFile(filePath, delimiter, formatter);
-			List<StringCount> wordCountList = counter.countUnique(wordList, isCaseSensitive);
-			Collections.sort(wordCountList, stringCountComparator);
-			for(StringCount wordCount : wordCountList) {
+      List<StringCount> wordCountList = counter.countUnique(wordList, isCaseSensitive);
+      List<StringCount> sortedWordCountList = wordCountSorter.sortStringCountsByCountDescThenName(wordCountList);
+
+			for(StringCount wordCount : sortedWordCountList) {
 				System.out.println(wordCount.getName() + " " + wordCount.getCount());
 			}
-	    } catch(FileNotFoundException e) {
+	  } catch(FileNotFoundException e) {
 	    	e.printStackTrace();
 	    	System.exit(1);
-	    }
-
-
+	  }
 	}
-
 }

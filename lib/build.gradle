@@ -34,12 +34,9 @@ java {
     }
 }
 
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-}
-
 tasks.withType(Test) {
+  // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
   testLogging {
     exceptionFormat "full"
     events "started", "skipped", "passed", "failed"

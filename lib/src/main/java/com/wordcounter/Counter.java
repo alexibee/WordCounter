@@ -6,12 +6,20 @@ import java.util.List;
 
 public class Counter {
 
-	public List<StringCount> countUnique(List<String> listToCount, boolean isCaseSensitive){
+   /**
+     * Counts unique strings in a list.
+     *
+     * @param listToCount list of strings to be counted (List<String>)
+     * @param isCaseSensitive whether to count strings with different cases as unique (boolean)
+     * @return list of StringCount objects (List<StringCount>)
+     */
+
+  public List<StringCount> countUnique(List<String> listToCount, boolean isCaseSensitive) {
 
 		HashMap<String,StringCount> map = new HashMap<>();
-	    if(listToCount == null) {
-	      return new ArrayList<StringCount>();
-	    }
+    if(listToCount == null) {
+      return new ArrayList<StringCount>();
+    }
 		for (String string : listToCount) {
 			if(string.isBlank()) {
 				continue;
