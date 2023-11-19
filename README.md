@@ -11,7 +11,7 @@ or
 
 ## To run
 
-"java -cp lib/build/classes/java/main com.wordcounter.Main _path-to-text-file_"
+java -cp lib/build/classes/java/main com.wordcounter.Main _path-to-text-file_
 
 ## To archive
 
