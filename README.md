@@ -1,6 +1,6 @@
-### Simple Word Counter App
+# Simple Word Counter App
 
-# Java version: 17
+### Java version: 17
 
 ## To build
 
