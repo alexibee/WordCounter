@@ -26,5 +26,5 @@ Unix:
 or
 ./gradlew jar (Unix)
 
-Archive will be found in build/libs/ directory as lib.jar
+Archive will be found in build/libs/ directory as lib.jar,
 run it with: java -jar lib.jar _path-to-text-file_
